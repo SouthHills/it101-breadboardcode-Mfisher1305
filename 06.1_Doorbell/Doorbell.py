@@ -1,7 +1,7 @@
 from gpiozero import Buzzer, Button
 
 BUZZER = Buzzer(17)
-BUTTON = Button(18)
+BUTTON = Button(12)
 
 def loop():
     while True:

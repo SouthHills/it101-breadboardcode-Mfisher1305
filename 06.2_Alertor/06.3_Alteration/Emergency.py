@@ -1,7 +1,8 @@
-from gpiozero import TonalBuzzer, Button
+from gpiozero import TonalBuzzer, Button, PWMLED
 import time
 from signal import pause
 
+LED = PWMLED(23)
 BUZZER = TonalBuzzer(17)
 BUTTON = Button(12)
 HIGH_TONE = 600 # The max is 880 but that hurts my ears
@@ -18,6 +19,7 @@ def alertor():
     while True:  
         # Linear
         for x in range(LOW_TONE, HIGH_TONE):
+            LED.value = x / 600 # set DC (direct current) value as the duty cycle
             BUZZER.play(x)
             time.sleep(0.002)
             
@@ -25,6 +27,7 @@ def alertor():
                 return  
             
         for x in range(HIGH_TONE, LOW_TONE, -1):
+            LED.value = x / 600 # set DC value as the duty cycle
             BUZZER.play(x)
             time.sleep(0.002)
             

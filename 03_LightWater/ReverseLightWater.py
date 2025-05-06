@@ -11,19 +11,19 @@ LEDS = LEDBarGraph(*LED_PINS, active_high=False)
 def setup():
     global LEDS
     for led in LEDS:  # make led(on) move from left to right
-        led.off()
+        led.on()
 
 def loop():
     global LEDS
     while True:
         for led in LEDS:  # make led(on) move from left to right
-            led.on()
-            sleep(0.2)
             led.off()
+            sleep(0.2)
+            led.on()
         for led in LEDS[::-1]:  # make led(on) move from right to left
-            led.on()
-            sleep(0.2)
             led.off()
+            sleep(0.2)
+            led.on()
             
 def destroy():
     global LEDS
