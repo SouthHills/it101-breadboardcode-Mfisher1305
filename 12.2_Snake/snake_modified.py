@@ -5,8 +5,10 @@ import time
 import random
 from collections import deque
 from input_structure import Input
+from joystick import Joystick
 
 pygame.init()
+JOYSTICK = Joystick()
 
 # Set up the display
 GRID_SIZE = 56
@@ -57,16 +59,16 @@ def check_input():
     global current_direction, JOYSTICK
     # TODO: Replace "False" with the correct method call to the joystick object you make
     # Can't double-back on your snake
-    if False and current_direction != Input.RIGHT:
+    if JOYSTICK.get_direction() == "Left" and current_direction != Input.RIGHT:
         input_buffer.append(Input.LEFT)
-    elif False and current_direction != Input.LEFT:
+    elif JOYSTICK.get_direction() == "Right" and current_direction != Input.LEFT:
         input_buffer.append(Input.RIGHT)
-    elif False and current_direction != Input.DOWN:
+    elif JOYSTICK.get_direction() == "Up" and current_direction != Input.DOWN:
         input_buffer.append(Input.UP)
-    elif False and current_direction != Input.UP:
+    elif JOYSTICK.get_direction() == "Down" and current_direction != Input.UP:
         input_buffer.append(Input.DOWN)
     
-    if False: # Pressing in on the joystick should pause the game
+    if JOYSTICK.get_button_pressed(): # Pressing in on the joystick should pause the game
         input_buffer.append(Input.PRESS)
 
 # Function to main loop
@@ -193,7 +195,7 @@ def game_loop():
                         game_over = True
                         
             # TODO: Replace "False" with a call to the appropriate method in your joystick instance
-            if False:
+            if JOYSTICK.get_button_pressed():
                 game_close = False
                 game_over = False
 
